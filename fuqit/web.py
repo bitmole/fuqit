@@ -58,7 +58,7 @@ def process(method, path, params, context):
 
 def render_template(path, variables, ext=None):
     ext = ext or os.path.splitext(path)[1]
-    headers = tools.make_ctype(ext, config.default_mtype)
+    headers = tools.make_ctype(ext, config.__dict__.get('default_mtype', 'text/html'))
 
     if 'headers' in variables:
         sessions.load_session(variables)
@@ -176,8 +176,8 @@ def configure(app_module="app", config_module="config"):
         config.app_path = os.path.realpath(app_module)
         config.errors_dir = config.app_path + '/errors/'
         config.env = Environment(loader=PackageLoader(config.app_module, '.'))
-        config.allowed_referer = re.compile(config.allowed_referer)
+        config.allowed_referer = re.compile(config.__dict__.get('allowed_referer', '.*'))
         config.static_dir = os.path.realpath(config.app_path +
-                                           (config.static_dir or '/static/'))
+                                           (config.__dict__.get('static_dir ', '/static/') ))
 
 
