@@ -13,7 +13,7 @@ config = {
     'author_email': 'zedshaw@zedshaw.com',
      'version': '1.0',
      'scripts': ['bin/fuqit'],
-     'install_requires': ['python-modargs', 'python-lust'],
+     'install_requires': ['python-modargs', 'python-lust', 'jinja2'],
      'packages': ['fuqit', 'fuqit.data'],
      'name': 'fuqit'
 }
